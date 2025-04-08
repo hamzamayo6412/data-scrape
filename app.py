@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from pymongo import MongoClient
 import requests
 import json
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -45,7 +46,11 @@ def fetch_and_insert_route():
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    products = collection.find()
+
+    df_from_mongo = pd.DataFrame(list(products))
+
+    return render_template('index.html', tables=[df_from_mongo.to_html(classes='data', header=True)], titles=['na', 'Products'])
 
 if __name__ == '__main__':
     app.run(debug=True)
