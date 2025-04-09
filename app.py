@@ -46,11 +46,23 @@ def fetch_and_insert_route():
 
 @app.route('/')
 def index():
-    products = collection.find()
+    products = list(collection.find())
 
-    df_from_mongo = pd.DataFrame(list(products))
+    for product in products:
+        product.pop('_id', None)
+        product['price'] = product.get('price', {}).get('min', '')
+        product['categories'] = ', '.join([cat['name'] for cat in product.get('meta', {}).get('interests', []) if cat['type'] == 'category'])
+        product['brand'] = product.get('brand', '')
+        product['link'] = product.get('link', '')
+        product['image'] = f"<img src='{product.get('image_url', '')}' width='100' />"
 
-    return render_template('index.html', tables=[df_from_mongo.to_html(classes='data', header=True)], titles=['na', 'Products'])
+    df = pd.DataFrame(products)
+
+    return render_template(
+        'index.html',
+        tables=[df.to_html(classes='data', header=True, escape=False, index=False)],
+        titles=['Products']
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
