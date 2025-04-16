@@ -51,3 +51,11 @@ pip install flask pymongo requests pandas
 
 2. Make sure MongoDB is running
 3. Start the app with `python app.py`
+
+## References
+1. https://www.youtube.com/watch?v=m7UQyy0Q5Uk&list=PLu0W_9lII9agAiWp6Y41ueUKx1VcTRxmf&index=2
+2. https://www.youtube.com/watch?v=jNiSALNBQv0&list=PLu0W_9lII9agAiWp6Y41ueUKx1VcTRxmf&index=3
+3. https://www.youtube.com/watch?v=zU2l4HKT0nc
+4. https://www.youtube.com/watch?v=JqS6BcgeUMw&list=PLu0W_9lII9agAiWp6Y41ueUKx1VcTRxmf&index=19
+5. https://medium.com/featurepreneur/mongodb-crud-with-flask-e5700ad7996e
+6. https://medium.com/@hello_9187/unit-testing-a-flask-api-910b19c38ee2#:~:text=The%20first%20step%20is%20to,others%20to%20the%20function%20level.
